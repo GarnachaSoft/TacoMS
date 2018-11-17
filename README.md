@@ -1,6 +1,6 @@
-# HELLOSOCKET
+# TacoMS
 
-> A boilerplate socket server
+> Taco Management System
 
 
 ### How To Setup
