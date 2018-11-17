@@ -1,28 +1,23 @@
 'use strict';
 
-
 const ctrl = require ('../controllers/UserController');
 
-module.exports = (app) => {
-    app
-        .route('/user')
-        .get ((req, res) => {
-            res
+module.exports = (app, passport) => {
+    const bearer = passport.authenticate ('bearer', { session: false });
+
+    app.get ('/user', bearer, (req, res) => {
+        res
             .status (200)
-            .json (req.user);
-        })
-    ;
+            .json ({
+                data: req.user
+            })
+        ;
+    });
 
-    app
-        .route('/users')
-        .get(ctrl.find)
-        .post (ctrl.store)
-    ;
+    app.get('/users', bearer, ctrl.find);
+    app.post ('/users', bearer, ctrl.store);
 
-    app
-        .route('/user/:id')
-        .get(ctrl.show)
-        .put (ctrl.update)
-        .delete (ctrl.delete)
-    ;
+    app.get('/user/:id', bearer, ctrl.show);
+    app.put ('/user/:id', bearer, ctrl.update);
+    app.delete ('/user/:id', bearer, ctrl.delete);
 };

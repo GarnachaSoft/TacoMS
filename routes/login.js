@@ -1,10 +1,8 @@
 'use strict';
 
-const passport = require ('passport');
+const { errors } = require ('../utils');
 
-module.exports = (app) => {
-    require ('../strategies/google') (app);
-
+module.exports = (app, passport) => {
     passport.serializeUser ((user, done) => {
         done (null, user);
     });
@@ -13,11 +11,23 @@ module.exports = (app) => {
         done (null, user);
     });
 
+    require ('../strategies/bearer') (app, passport);
+    require ('../strategies/google') (app, passport);
+
+    app.all ('/auth/success', (req, res) => {
+        res
+            .status (200)
+            .json ({
+                access_token: req.user.credentials.accessToken,
+                data: req.user,
+            })
+        ;
+    });
+
     app.all ('/auth/fail', (req, res) => {
         res
-        .status (400)
-        .json ({
-            message: 'Unexpected error',
-        });
+            .status (errors.generic.UNEXPECTED.status)
+            .json (errors.generic.UNEXPECTED)
+        ;
     });
 };

@@ -7,7 +7,7 @@ const { baseSchemaDefinition } = require ('./baseSchema');
 const collectionName = 'site';
 
 const schemaDefinition = {
-    title: {
+    name: {
         type: String,
         required: true
     },

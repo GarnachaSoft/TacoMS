@@ -1,13 +1,13 @@
 'use strict';
 
 const { errors } = require ('../utils');
+const { UserModel } = require ('../models');
 const { UserSchema } = require ('../schemas');
 
 const  UserController = {
     async find (req, res) {
         const query = req.query.q || {};
-        const users = await UserSchema.model.find(query);
-
+        const users = await UserSchema.model.find (query);
         res
             .status (200)
             .json ({
@@ -51,12 +51,12 @@ const  UserController = {
 
     // TODO: Actualizar permisos
     async grant (req, res) {
-        res.status (401);
+
     },
 
     // TODO: Validar usuario por email
     async validate (req, res) {
-        res.status (401);
+
     },
 }
 module.exports = UserController;

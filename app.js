@@ -1,6 +1,7 @@
 'use strict';
 require ('colors');
 
+const NODE_ENV = process.env.NODE_ENV;
 const settings = require ('./config/settings');
 const
     express = require ('express'),
@@ -106,13 +107,19 @@ io.on ('connection', (socket) => {
     socket.emit ('connected', { message: `Welcome to ${process.env.npm_package_name}.` });
 });
 
+//* Hostname
+const hostnames = {
+    development: `${settings.server.hostname}:${settings.server.port}`,
+    production: `${settings.server.hostname}`,
+};
+app.locals.hostname = hostnames [NODE_ENV];
+
 require ('./routes') (app);
 require ('./sockets') (app, io);
 
 //* Server
 const deploy = () => {
-    const schema = `http://${settings.server.hostname}:${settings.server.port}`;
     server.listen (settings.server.port);
-    app.logger.info (`Listening on ${schema.yellow}`);
+    app.logger.info (`Listening on ${('http://' + app.locals.hostname).yellow}`);
 };
 deploy ();

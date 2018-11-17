@@ -6,6 +6,8 @@ const { Schema } = mongoose;
 const baseSchemaDefinition = {
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
+    created_at_timestamp: { type: Number, default: Date.now },
+    updated_at_timestamp: { type: Number, default: Date.now },
 };
 
 const createUniqueIndex = (options) => {
