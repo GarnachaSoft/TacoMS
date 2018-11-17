@@ -14,3 +14,9 @@ Install & run
 ```bash
 npm install && npm run dev
 ```
+
+### Dependences
+
+Require
+* MongoDB 4.0.2
+* NodeJS 8.12.0
