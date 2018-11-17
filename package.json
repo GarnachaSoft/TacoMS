@@ -1,7 +1,7 @@
 {
-  "name": "hellosocket",
+  "name": "tacoms",
   "version": "1.0.0",
-  "description": "A boilerplate socket server",
+  "description": "The ultimate Content Management System",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon .",
@@ -36,10 +36,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/dannegm/HELLOSOCKET.git"
+    "url": "git+ssh://git@github.com/GarnachaSoft/TacoMS.git"
   },
   "bugs": {
-    "url": "https://github.com/dannegm/HELLOSOCKET/issues"
+    "url": "https://github.com/GarnachaSoft/TacoMS/issues"
   },
-  "homepage": "https://github.com/dannegm/HELLOSOCKET#readme"
+  "homepage": "https://github.com/GarnachaSoft/TacoMS#readme"
 }
