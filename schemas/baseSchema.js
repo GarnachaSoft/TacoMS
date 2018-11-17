@@ -23,4 +23,5 @@ const createModel = (options) => {
 module.exports = {
     createUniqueIndex,
     createModel,
+    baseSchemaDefinition,
 };
