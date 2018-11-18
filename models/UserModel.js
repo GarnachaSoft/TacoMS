@@ -4,10 +4,8 @@ const { errors } = require ('../utils');
 const { UserSchema } = require ('../schemas');
 
 const UserModel = {
-    async upsert ($set) {
-        return await UserSchema.model.findOneAndUpdate ({ email: $set.email }, { $set }, {
-            upsert: true,
-        });
+    async upsert (data) {
+        return await UserSchema.model.findOneAndUpdate ({ email: data.email }, data, { upsert: true });
     },
 
     async findById (_id) {

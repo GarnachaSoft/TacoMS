@@ -1,6 +1,7 @@
 'use strict';
 
 const { errors } = require ('../utils');
+const { UserSchema } = require ('../schemas');
 
 module.exports = (app, passport) => {
     passport.serializeUser ((user, done) => {
@@ -14,12 +15,13 @@ module.exports = (app, passport) => {
     require ('../strategies/bearer') (app, passport);
     require ('../strategies/google') (app, passport);
 
-    app.all ('/auth/success', (req, res) => {
+    app.all ('/auth/success', async (req, res) => {
+        const user = await UserSchema.model.findOne ({ _id: req.user._id });
         res
             .status (200)
             .json ({
-                access_token: req.user.credentials.accessToken,
-                data: req.user,
+                access_token: user.credentials.accessToken,
+                data: user,
             })
         ;
     });
