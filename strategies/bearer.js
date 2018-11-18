@@ -9,7 +9,6 @@ module.exports = (app, passport) => {
         new BearerStrategy (async (accessToken, done) => {
             try {
                 const user = await UserModel.findByToken (accessToken);
-                console.log(user);
                 if (!user) return done (errors.users.UNREGISTERED);
                 return done (null, user);
             } catch (e) {

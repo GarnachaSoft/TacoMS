@@ -25,7 +25,6 @@ module.exports = (app, passport) => {
                     const user = await UserModel.upsert (data);
                     return done (null, user);
                 } catch (e) {
-                    app.outputs.json ('ERROR', e);
                     return done (e);
                 }
             }
